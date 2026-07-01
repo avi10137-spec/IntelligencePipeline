@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Calculators\" />
+    <Folder Include="models\Enum\" />
+    <Folder Include="pipline\" />
+    <Folder Include="Storage\" />
+  </ItemGroup>
+
 </Project>
