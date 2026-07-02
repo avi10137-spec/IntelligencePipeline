@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IntelligencePipeline.models.reports
 {
-    abstract class Report
+    public abstract class Report
     {
         DateTime startTime = new DateTime(2020, 01, 01);
         private int _reportId;
@@ -37,7 +37,7 @@ namespace IntelligencePipeline.models.reports
             ReportId = reportId;
             TimeStemp = timestamp;
             Latitude = latitude;
-            longitude = longitude;
+            Longitude = longitude;
             Description = description;
             Status = ReportStatus.New;
 

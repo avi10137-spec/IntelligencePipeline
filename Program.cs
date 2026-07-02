@@ -12,7 +12,7 @@ namespace IntelligencePipeline
             RadarReport b = new RadarReport(4, DateTime.Now, 15.0, 80.0, "weapon weapon is critical movement", 150, 200, 500);
 
             Console.WriteLine($"{ a.SoldierName} ");
-
+            Console.WriteLine($"{a.GetSourceType()}");
 
 
             int score = a.CalculateReliabilityScore();

@@ -24,7 +24,10 @@ namespace IntelligencePipeline.models.reports
             Altitude = altitude;
             ImageQuality = imageQuality;
         }
-        public override string GetSourceType() => "Drone";
+        public override string GetSourceType()
+        {
+            return "Drone";
+        }
         public override int CalculateReliabilityScore()
         {
             

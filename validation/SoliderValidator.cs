@@ -1,50 +1,39 @@
-//using System;
-//namespace IntelligencePipeline.Validation
-//{
-//    using global::IntelligencePipeline.models.reports;
-//    using IntelligencePipeline.Models.Reports;
-//    using System;
-//    using System.ComponentModel.DataAnnotations;
+using System;
+using IntelligencePipeline.models.reports;
 
-//    namespace IntelligencePipeline.Validation
-//    {
-//        public class SoldierValidator : IValidator // המימוש של הממשק (מקור: 255)
-//        {
-//            public ValidationResult Validate(Report report)
-//            {
-//                // א. וידוא שהדיווח הוא אכן של חייל והסבת הטיפוס (מקור: 260)
-//                if (report is not SoldierReport soldierReport)
-//                {
-//                    return ValidationResult.Failure("הדיווח שסופק אינו דיווח חייל תקין.");
-//                }
+namespace IntelligencePipeline.Validation
+{
+    public class SoldierValidator :BaseValidator
+    {
+        public override ValidationResult ValidateSpecificFields(Report report)
+        {
+            int LowConfidencel = 1;
+            int HighConfidencel = 5;
+            if (report.GetSourceType() != "Soldier")
+            {
+                return ValidationResult.Failure("is not solider report");
+            }
+            SoldierReport soldierReport = (SoldierReport)report;
 
-//                // ב. בדיקת השדות הכלליים (שמגיעים מאב הדיווח) (מקור: 260)
-//                if (soldierReport.Timestamp > DateTime.Now || soldierReport.Timestamp < new DateTime(2020, 1, 1)) // (מקור: 102, 103)
-//                {
-//                    return ValidationResult.Failure("תאריך הדיווח לא תקין.");
-//                }
+            if (soldierReport.SoldierName.Length < 2 || soldierReport.SoldierName.Length >50)
+            {
+                return ValidationResult.Failure("");
+            }
 
-//                if (string.IsNullOrEmpty(soldierReport.Description) || soldierReport.Description.Length < 10) // (מקור: 108)
-//                {
-//                    return ValidationResult.Failure("התיאור קצר מדי.");
-//                }
-
-//                // ג. בדיקת שדות ייחודיים של חייל (מקור: 259, 260)
-//                // בדיקה ששם החייל לא ריק
-//                if (string.IsNullOrWhiteSpace(soldierReport.SoldierName))
-//                {
-//                    return ValidationResult.Failure("שם החייל אינו יכול להיות ריק.");
-//                }
-
-//                // בדיקה שתעודת החייל מכילה בדיוק 7 ספרות (לפי חוקי הארכיטקטורה)
-//                if (string.IsNullOrEmpty(soldierReport.SoldierID) || soldierReport.SoldierID.Length != 7)
-//                {
-//                    return ValidationResult.Failure("מזהה חייל חייב להכיל 7 תווים בדיוק.");
-//                }
-
-//                // אם הכל תקין, מחזירים הצלחה! (מקור: 258)
-//                return ValidationResult.Success();
-//            }
-//        }
-//    }
-//}
+            if ( soldierReport.SoldierID.Length != 7)
+            {
+                return ValidationResult.Failure("");
+            }
+            if (soldierReport.Unit.Length < 2 || soldierReport.Unit.Length > 50)
+            {
+                return ValidationResult.Failure("invalid unit");
+            }
+            if (soldierReport.ConfidenceLevel < LowConfidencel || soldierReport.ConfidenceLevel > HighConfidencel)
+            {
+                return ValidationResult.Failure("invalid confidencel");
+            }
+          
+            return ValidationResult.Success();
+        }
+    }
+}
