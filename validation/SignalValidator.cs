@@ -32,6 +32,7 @@ namespace IntelligencePipeline.Validation
             {
                 return ValidationResult.Failure("invalid language");
             }
+            else return ValidationResult.Success();
         }
     }
 }

@@ -15,7 +15,7 @@ public class ValidationResult
         }
         public static ValidationResult Success()
         {
-            return new ValidationResult(true, "");
+            return new ValidationResult(true ,"");
         }
         public static ValidationResult Failure(string errorMessage)
         {
