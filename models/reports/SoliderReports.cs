@@ -8,7 +8,7 @@ namespace IntelligencePipeline.models.reports
 {
     class SoldierReport : Report
     {
-       
+
         string[] keywords = { "weapon", "vehicle", "movement", "expolosion" };
         private string _solidierName;
         private string _soldierId;
@@ -47,6 +47,7 @@ namespace IntelligencePipeline.models.reports
 
             return ScoreBase;
         }
+        
 
 
         

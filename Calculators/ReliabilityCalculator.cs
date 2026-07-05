@@ -3,12 +3,16 @@ using System;
 namespace IntelligencePipeline.Calculators;
 public class ReliabilityCalculator
 {
-    public int Calculate(Report report)
+    public  int Calculate(Report report)
     {
         int totalScore = report.ReliabilityScore;
         if (totalScore > 10)
         {
-            return 10;
+            totalScore = 10;
+        }
+        if (totalScore < 1)
+        {
+            totalScore = 1;
         }
 
         return totalScore;
